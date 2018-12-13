@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:paddingTop="15dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:background="@color/colorWhite">
+    <TextView
+        android:id="@+id/tv_Day"
+        android:text="TUESDAY,DECEMBER 4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="7pt"/>
+    <TextView
+        android:text="开眼编辑精选"
+        android:id="@+id/tv2"
+        android:layout_below="@+id/tv_Day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17pt"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"/>
+    <TextView
+        android:text="查看往期  >"
+        android:gravity="right"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/tv2"
+        android:layout_alignBottom="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="8pt"
+        android:textStyle="bold"
+        android:textColor="@color/colorLakeBlue"/>
+</RelativeLayout>

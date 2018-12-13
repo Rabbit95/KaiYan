@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_recommend"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/view_main"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+            </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <TextView
+        android:id="@+id/text_end"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_below="@+id/srl_recommend"
+        android:text="-- 看看别的叭 --"
+        android:textColor="@color/colorBlack"
+        android:textSize="45px" />
+
+</RelativeLayout>

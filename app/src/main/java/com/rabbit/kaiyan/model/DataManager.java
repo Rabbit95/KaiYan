@@ -3,6 +3,7 @@ package com.rabbit.kaiyan.model;
 import com.rabbit.kaiyan.model.DB.DBHelper;
 import com.rabbit.kaiyan.model.beans.CategoryBean;
 import com.rabbit.kaiyan.model.beans.DailyBean;
+import com.rabbit.kaiyan.model.beans.DiscoveryBean;
 import com.rabbit.kaiyan.model.beans.ItemListBean;
 import com.rabbit.kaiyan.model.beans.RelateBean;
 import com.rabbit.kaiyan.model.beans.ReplyBean;
@@ -112,6 +113,11 @@ public class DataManager implements ApiHelper,DBHelper,PreferenceHelper{
     @Override
     public Flowable<CategoryBean> getMoreCategoryBean(int num) {
         return mApiHelper.getMoreCategoryBean(num);
+    }
+
+    @Override
+    public Flowable<DiscoveryBean> getDiscoveryBean() {
+        return mApiHelper.getDiscoveryBean();
     }
 
     @Override

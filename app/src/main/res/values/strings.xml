@@ -13,4 +13,7 @@
     <string name="about_dis">EyesOpener,一个使用开眼API制作的开源视频播放APP。为了熟悉Android当前主流框架的使用，同时也为了锻炼自己的代码能力做了这个项目，仅供学习使用哦~
         \n如果发现BUG，可以在GitHub上面提，也可以邮件我~谢谢</string>
     <string name="about_address">https://github.com/zhijianhuang/EyesOpener</string>
+    <string name="recycleview_loding">----- ٩(ˊᗜˋ*) 来抓我鸭 -----</string>
+    <string name="recycleview_loding_end">----- 被抓到了(｡•́︿•̀｡)  -----</string>
+    <string name="recycleView_end">----- 看看别的叭(〃･̆ ･̆〃) -----</string>
 </resources>

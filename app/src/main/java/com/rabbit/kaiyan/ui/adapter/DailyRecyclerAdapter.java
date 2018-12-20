@@ -134,8 +134,8 @@ public class DailyRecyclerAdapter extends BaseRecyclerAdapter<ItemListBean>{
         TYPE_END
     }
 
-    public static class Holder extends ViewHolder {
-        public Holder(View itemView) {
+    private static class Holder extends ViewHolder {
+        private Holder(View itemView) {
             super(itemView);
         }
     }

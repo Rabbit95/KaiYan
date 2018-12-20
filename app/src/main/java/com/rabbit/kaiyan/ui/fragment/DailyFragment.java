@@ -108,35 +108,7 @@ public class DailyFragment extends RootFragment<DailyPresenter> implements Daily
         });
     }
 
-    /**
-     * onstart中需要重新调用viewpager的轮转，并设置其中的JumpShowTextView直接显示文字
-     */
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (dataReady && isVisiable) {
-            mPresenter.startInterval();
-            mAdapter.startText();
-        }
-    }
 
-    /**
-     * onstop中需要暂停viewpager的轮播，并暂停JumpShowTextView的逐字显示
-     */
-    @Override
-    public void onStop() {
-        super.onStop();
-        mAdapter.stopText();
-        mPresenter.stopInterval();
-    }
-
-
-    /**
-     * 当此fragment不可见时，需要暂停viewpager的轮播，暂停JumpShowTextView的逐字显示
-     * 并在fragment再次可见时，重新调用View的轮播
-     *
-     * @param isVisibleToUser
-     */
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -144,11 +116,9 @@ public class DailyFragment extends RootFragment<DailyPresenter> implements Daily
         if (isVisibleToUser) {
             if (dataReady) {
                 mAdapter.startText();
-                mPresenter.startInterval();
             }
         } else {
             if (mPresenter != null) {
-                mPresenter.stopInterval();
             }
             if (mAdapter != null) {
                 mAdapter.stopText();
@@ -177,12 +147,6 @@ public class DailyFragment extends RootFragment<DailyPresenter> implements Daily
 
     @Override
     public void showContent(List<ItemListBean> list) {
-//        for (ItemListBean itemListBean : list) {
-//            if (itemListBean.getType().equals("textHeader") || itemListBean.getType().equals("video")) {
-//                itemListBeans.add(itemListBean);
-//
-//            }
-//        }
         for (ItemListBean itemListBean : list) {
             itemListBeans.add(itemListBean);
         }
@@ -191,24 +155,6 @@ public class DailyFragment extends RootFragment<DailyPresenter> implements Daily
         dataReady = true;
         mAdapter.addDailyData(itemListBeans);
         mSwipeRefreshLayout.setRefreshing(false);
-//        mPresenter.startInterval();
     }
 
-    @Override
-    public void showFirstContent(List<ItemListBean> listBeans) {
-        for (ItemListBean itemListBean : listBeans) {
-            if (itemListBean.getType().equals("video")) {
-                firstItemListBeans.add(itemListBean);
-            }
-        }
-        mAdapter.addTopData(firstItemListBeans);
-    }
-
-    /**
-     * 轮转viewpager
-     */
-    @Override
-    public void changeTopPageView() {
-        mAdapter.changeTopPageView();
-    }
 }

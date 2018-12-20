@@ -41,13 +41,15 @@ public class ListEndView extends FrameLayout {
     public void setData(int loadState){
         switch (loadState){
             case 1:
-                textEnd.setText("----- ٩(ˊᗜˋ*) 来抓我鸭 -----");
+                textEnd.setText(R.string.recycleview_loding);
                 break;
             case 3:
-                textEnd.setText("----- 被抓到了(｡•́︿•̀｡)  -----");
+                textEnd.setText(R.string.recycleview_loding_end);
                 break;
             case 4:
-                textEnd.setText("----- 看看别的叭(〃･̆ ･̆〃) -----");
+                textEnd.setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
+                textEnd.setText(R.string.recycleView_end);
+                break;
         }
     }
 }

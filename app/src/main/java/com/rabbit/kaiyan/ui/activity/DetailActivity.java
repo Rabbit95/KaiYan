@@ -233,7 +233,6 @@ public class DetailActivity extends RootActivity<DetailPresenter> implements Det
                 listBeans.add(itemListBean);
             }
         }
-        Log.d(TAG, "listBeans size:"+listBeans.size());
         mAdapter.getData(listBeans);
     }
 

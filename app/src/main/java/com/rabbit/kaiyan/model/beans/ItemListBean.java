@@ -25,6 +25,9 @@ public class ItemListBean implements Serializable {
     private int id;
     private int adIndex;
     private long date;
+    private int titlePosition;
+    public int titleVisible;
+
     public static ItemListBean objectFromData(String str) {
 
         return new Gson().fromJson(str, ItemListBean.class);
@@ -67,6 +70,22 @@ public class ItemListBean implements Serializable {
         return new ArrayList();
 
 
+    }
+
+    public int getTitleVisible() {
+        return titleVisible;
+    }
+
+    public void setTitleVisible(int titleVisible) {
+        this.titleVisible = titleVisible;
+    }
+
+    public int getTitlePosition() {
+        return titlePosition;
+    }
+
+    public void setTitlePosition(int titlePosition) {
+        this.titlePosition = titlePosition;
     }
 
     public long getDate() {

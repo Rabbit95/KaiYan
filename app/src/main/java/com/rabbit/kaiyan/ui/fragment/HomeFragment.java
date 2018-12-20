@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
         viewPager = v.findViewById(R.id.vp_home);
 
         mFragments.add(OtherFragment.getInstance(mTitles[0]));
-        mFragments.add(OtherFragment.getInstance(mTitles[1]));
+        mFragments.add(new DiscoveryFragment());
         mFragments.add(new RecommendFragment());
 //        mFragments.add(OtherFragment.getInstance(mTitles[3]));
         mFragments.add(new DailyFragment());
@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
         mAdapter = new FragmentAdapter(getChildFragmentManager(),mFragments,mTitles);
         viewPager.setAdapter(mAdapter);
         tabLayout.setViewPager(viewPager);
-        viewPager.setCurrentItem(2);
+        viewPager.setCurrentItem(1);
         return v;
 
     }

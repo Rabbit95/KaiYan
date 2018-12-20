@@ -2,6 +2,7 @@ package com.rabbit.kaiyan.model.http;
 
 import com.rabbit.kaiyan.model.beans.CategoryBean;
 import com.rabbit.kaiyan.model.beans.DailyBean;
+import com.rabbit.kaiyan.model.beans.DiscoveryBean;
 import com.rabbit.kaiyan.model.beans.RelateBean;
 import com.rabbit.kaiyan.model.beans.ReplyBean;
 
@@ -24,6 +25,8 @@ public interface ApiHelper {
     Flowable<CategoryBean> getCategoryBean();
 
     Flowable<CategoryBean> getMoreCategoryBean(int num);
+
+    Flowable<DiscoveryBean> getDiscoveryBean();
 
 //    Flowable<HotBean> getWeekHotBean(String type);
 //

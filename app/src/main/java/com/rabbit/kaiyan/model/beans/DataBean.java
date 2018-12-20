@@ -12,20 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataBean implements Serializable {
-    /**
-     * dataType : Banner
-     * id : 1169
-     * title :
-     * description :
-     * image : http://img.kaiyanapp.com/ac8fcae923e36b0499a49e50d892e950.jpeg?imageMogr2/quality/60/format/jpg
-     * actionUrl : eyepetizer://webview/?title=%E4%B8%80%E8%A7%81%E5%80%BE%E5%BF%83%EF%BC%8C%E9%A9%AD%E7%BD%A2%E4%B8%8D%E8%83%BD&url=http%3A%2F%2Fwww.kaiyanapp.com%2Fcampaign%2Fchapter_activity%2Fchapter.html%3Fnid%3D1264%26shareable%3Dtrue
-     * adTrack : null
-     * shade : false
-     * label : {"text":"广告","card":"广告","detail":null}
-     * labelList : [{"text":"广告","actionUrl":null}]
-     * header : {"id":0,"title":null,"font":null,"subTitle":null,"subTitleFont":null,"textAlign":"left","cover":null,"label":null,"actionUrl":null,"labelList":null,"rightText":null,"icon":null,"description":null}
-     * autoPlay : false
-     */
+
 
     //分类里的
     private String dataType;
@@ -71,6 +58,77 @@ public class DataBean implements Serializable {
     private List<?> subtitles;
     private String text;
     private List<ItemListBean> itemList;
+
+    //首页里的
+    private int id;
+    private String title;
+    private String description;
+    private String image;
+    private String actionUrl;
+    private Object adTrack;
+    private boolean shade;
+    private LabelBean label;
+    private HeaderBean header;
+    private boolean autoPlay;
+    private List<LabelListBean> labelList;
+
+    //分类里的
+    private String icon;
+
+    //发现
+    private Content content;
+    private UserBean user;
+    private HotReplyBean reply;
+    private SimpleVideoBean simpleVideo;
+    private String createDate;
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public SimpleVideoBean getSimpleVideo() {
+        return simpleVideo;
+    }
+
+    public void setSimpleVideo(SimpleVideoBean simpleVideo) {
+        this.simpleVideo = simpleVideo;
+    }
+
+    public HotReplyBean getReply() {
+        return reply;
+    }
+
+    public void setReply(HotReplyBean reply) {
+        this.reply = reply;
+    }
+
+    public UserBean getUser() {
+        return user;
+    }
+
+    public void setUser(UserBean user) {
+        this.user = user;
+    }
+
+    public Content getContent() {
+        return content;
+    }
+
+    public void setContent(Content content) {
+        this.content = content;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
     public List<ItemListBean> getItemList() {
         return itemList;
@@ -400,18 +458,7 @@ public class DataBean implements Serializable {
         this.subtitles = subtitles;
     }
 
-    //首页里的
-    private int id;
-    private String title;
-    private String description;
-    private String image;
-    private String actionUrl;
-    private Object adTrack;
-    private boolean shade;
-    private LabelBean label;
-    private HeaderBean header;
-    private boolean autoPlay;
-    private List<LabelListBean> labelList;
+
 
     public static DataBean objectFromData(String str) {
 

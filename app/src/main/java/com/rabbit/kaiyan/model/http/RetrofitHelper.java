@@ -2,6 +2,7 @@ package com.rabbit.kaiyan.model.http;
 
 import com.rabbit.kaiyan.model.beans.CategoryBean;
 import com.rabbit.kaiyan.model.beans.DailyBean;
+import com.rabbit.kaiyan.model.beans.DiscoveryBean;
 import com.rabbit.kaiyan.model.beans.RelateBean;
 import com.rabbit.kaiyan.model.beans.ReplyBean;
 
@@ -44,6 +45,11 @@ public class RetrofitHelper implements ApiHelper {
     @Override
     public Flowable<CategoryBean> getMoreCategoryBean(int num) {
         return api.getMoreCategoryBean(num);
+    }
+
+    @Override
+    public Flowable<DiscoveryBean> getDiscoveryBean() {
+        return api.getDiscoverBean();
     }
 
     @Override

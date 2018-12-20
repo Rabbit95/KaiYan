@@ -64,7 +64,6 @@ public class RecommendFragment extends RootFragment<RecommendPresenter> implemen
         mAdapter = new RecommendAdapter(mContext,itemListBeans);
         mRecyclerView.setAdapter(mAdapter);
         mPresenter.getDailyData();
-//        mPresenter.getCategoryData();
         mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -78,7 +77,6 @@ public class RecommendFragment extends RootFragment<RecommendPresenter> implemen
                 int totalPotions = mLinearLayoutManager.getItemCount();
 //                Log.d("lastItemPositon", "lastItemPositon:"+lastItemPositon);
 //                Log.d("totalPotions", "totalPotions:"+totalPotions);
-
                 if(totalPotions - lastItemPositon == 1){
                     if(mAdapter.loadState != mAdapter.LOADING_END) {
                         mPresenter.getMoreCategoryData();
@@ -114,17 +112,10 @@ public class RecommendFragment extends RootFragment<RecommendPresenter> implemen
         mAdapter.addTopData(topListBeans);
     }
 
-    @Override
-    public void showCategoryContent(List<ItemListBean> categoryListBeans) {
-        mAdapter.addCategoryData(categoryListBeans);
-    }
 
     @Override
     public void showContent(List<ItemListBean > listBeans) {
         mSwipeRefreshLayout.setRefreshing(false);
-//        for (ItemListBean listBean : listBeans) {
-//            itemListBeans.add(listBean);
-//        }
         itemListBeans = listBeans;
         mAdapter.addDailyData(itemListBeans);
     }

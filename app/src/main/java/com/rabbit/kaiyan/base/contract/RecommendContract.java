@@ -10,7 +10,6 @@ public interface RecommendContract {
     interface View extends BaseView {
         void showDateContent(String date);
         void showTopContent(List<ItemListBean> topListBeans);
-        void showCategoryContent(List<ItemListBean> categoryListBeans);
         void showContent(List<ItemListBean> listBeans);
         void setEndState();
     }

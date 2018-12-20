@@ -6,6 +6,7 @@ import android.app.Activity;
 import com.rabbit.kaiyan.di.module.FragmentModule;
 import com.rabbit.kaiyan.di.scope.FragmentScope;
 import com.rabbit.kaiyan.ui.fragment.DailyFragment;
+import com.rabbit.kaiyan.ui.fragment.DiscoveryFragment;
 import com.rabbit.kaiyan.ui.fragment.RecommendFragment;
 
 import dagger.Component;
@@ -25,7 +26,10 @@ public interface FragmentComponent {
 
     void inject(RecommendFragment recommendFragment);
 
+    void inject(DiscoveryFragment discoveryFragment);
+
 //    void inject(TestFragment testFragment);
+
 //    void inject(HotFragment hotFragment);
 //
 //    void inject(TagsFragment tagsFragment);

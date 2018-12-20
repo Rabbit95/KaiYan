@@ -8,7 +8,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="38dp"
-        android:background="#fff"
+        android:background="@color/colorWhite"
         android:visibility="visible">
 
         <RelativeLayout
@@ -37,17 +37,17 @@
                 android:layout_centerInParent="true"
                 android:layout_toLeftOf="@+id/iv_home_search"
                 android:layout_toRightOf="@+id/iv_home_drag"
-                android:background="#fff"
+                android:background="@color/colorWhite"
 
-                tl:tl_indicator_color="#000"
+                tl:tl_indicator_color="@color/colorBlack"
                 tl:tl_indicator_height="3dp"
                 tl:tl_indicator_corner_radius="20dp"
                 tl:tl_indicator_width="10dp"
                 tl:tl_tab_space_equal="true"
                 tl:tl_tab_padding="8dp"
-                tl:tl_textUnselectColor="#66000000"
+                tl:tl_textUnselectColor="@color/colorDarkGray"
                 tl:tl_textsize="14sp"
-                tl:tl_textSelectColor="#000"
+                tl:tl_textSelectColor="@color/colorBlack"
                 tl:tl_underline_height="0dp"/>
 
 
@@ -60,13 +60,13 @@
                 android:layout_alignParentTop="true"
                 android:padding="10dp"
                 android:src="@mipmap/ic_action_search_no_padding"
-                android:tint="#000000" />
+                android:tint="@color/colorBlack" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.2dp"
                 android:layout_alignParentBottom="true"
-                android:background="#eeeeeeee" />
+                android:background="@color/colorLightGray" />
         </RelativeLayout>
 
     </RelativeLayout>

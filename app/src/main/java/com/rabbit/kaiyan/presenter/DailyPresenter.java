@@ -14,21 +14,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.disposables.Disposable;
-
 public class DailyPresenter extends RxPresenter<DailyContract.View> implements DailyContract.Presenter{
 
     private static final String TAG = "DailyPresenter";
     List<ItemListBean> itemListBeans = new ArrayList<>();
-    List<ItemListBean> moreItemListBeans;
-    List<ItemListBean> firstItemListBeans = new ArrayList<>();
     String nextUrl;
     long nextDate = 0;
     long nextPageDate = 0;
-    int toplistNum;
-
-    private Disposable intervalDisposable;
-
 
     @Inject
     public DailyPresenter(DataManager manager) {
@@ -51,6 +43,7 @@ public class DailyPresenter extends RxPresenter<DailyContract.View> implements D
                             nextUrl = dailyBean.getNextPageUrl();
                             String nextDateName = nextUrl.substring(nextUrl.indexOf("=") + 1, nextUrl.indexOf("&"));
                             nextPageDate = Long.decode(nextDateName);
+
 
                             //取出Type为video的Item
                             List<ItemListBean> videoList = new ArrayList<>();
@@ -130,35 +123,6 @@ public class DailyPresenter extends RxPresenter<DailyContract.View> implements D
         }));
     }
 
-    /**
-    * @explain  开始topViewPager的轮转播放
-    **/
-    @Override
-    public void startInterval() {
-//        if (intervalDisposable != null && !intervalDisposable.isDisposed()) {
-//            return;
-//        }
-//        intervalDisposable = Flowable.interval(4, TimeUnit.SECONDS)
-//                .onBackpressureDrop()
-//                .compose(RxUtil.<Long>rxSchedulerHelper())
-//                .subscribe(new Consumer<Long>() {
-//                    @Override
-//                    public void accept(Long aLong) throws Exception {
-//                        mView.changeTopPageView();
-//                    }
-//                });
-//        addSubscribe(intervalDisposable);
-    }
-
-    /**
-    * @explain  停止topViewPager的轮转播放
-    **/
-    @Override
-    public void stopInterval() {
-//        if (intervalDisposable != null && !intervalDisposable.isDisposed()) {
-//            intervalDisposable.dispose();
-//        }
-    }
 
     @Override
     public void refreshAll() {

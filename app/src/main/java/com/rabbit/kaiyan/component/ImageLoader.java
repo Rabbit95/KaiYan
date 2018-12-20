@@ -13,12 +13,7 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
-/**
-     * @type
-     * @explain 使用Glide简单封装图片加载工具
-     * @author Rabbit.
-     * @creat time 2018/11/27 15:59.
-**/
+
 public class ImageLoader {
     public static void load(Context context, String url, ImageView imageView){
         Glide.with(context).load(url).crossFade().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
@@ -36,6 +31,11 @@ public class ImageLoader {
     }
 
     public static void loadRound(Context context,String url,final ImageView imageView){
+        Glide.with(context).load(url).bitmapTransform(new CenterCrop(context),new RoundedCornersTransformation(context,15,0))
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
+    }
+
+    public static void loadSquare(Context context,String url,ImageView imageView){
         Glide.with(context).load(url).bitmapTransform(new CenterCrop(context),new RoundedCornersTransformation(context,15,0))
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
     }

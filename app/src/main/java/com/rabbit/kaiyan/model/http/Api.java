@@ -2,6 +2,7 @@ package com.rabbit.kaiyan.model.http;
 
 import com.rabbit.kaiyan.model.beans.CategoryBean;
 import com.rabbit.kaiyan.model.beans.DailyBean;
+import com.rabbit.kaiyan.model.beans.DiscoveryBean;
 import com.rabbit.kaiyan.model.beans.RelateBean;
 import com.rabbit.kaiyan.model.beans.ReplyBean;
 
@@ -42,6 +43,12 @@ public interface Api {
     **/
     @GET("v4/tabs/selected?")
     Flowable<DailyBean> getDailyBean(@Query("date") long date);
+
+    /**
+    * @explain 获取发现页数据
+    **/
+    @GET("v5/index/tab/discovery?udid=b301c597351746f2b68004e7dd15b72e7baec89e&vc=421&vn=4.7&size=1080X1920&deviceModel=vivo%20y55a")
+    Flowable<DiscoveryBean> getDiscoverBean();
 
 
     /**

@@ -13,5 +13,6 @@ public interface DailyContract {
         void getDailyData();
         void getMoreData();
         void refreshAll();
+
     }
 }

@@ -1,5 +1,7 @@
 package com.rabbit.kaiyan.model.prefs;
 
+import com.rabbit.kaiyan.model.beans.UserInfoBean;
+
 /**
      * @type
      * @explain  sharedpreferenced操作接口
@@ -11,4 +13,7 @@ public interface PreferenceHelper {
     void setPlaySetting(boolean playSetting);
     boolean getDownloadSetting();
     void setDownloadStting(boolean downloadStting);
+
+    void saveUserInfo(UserInfoBean user);
+    String getUserName();
 }

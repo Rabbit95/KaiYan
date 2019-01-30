@@ -2,11 +2,18 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <TextView
         android:id="@+id/ft_1_tv"
         android:text="fragment1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <Button
+        android:text="click"
+        android:id="@+id/bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>

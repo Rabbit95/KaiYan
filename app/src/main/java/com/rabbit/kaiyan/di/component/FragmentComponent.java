@@ -5,9 +5,17 @@ import android.app.Activity;
 
 import com.rabbit.kaiyan.di.module.FragmentModule;
 import com.rabbit.kaiyan.di.scope.FragmentScope;
+import com.rabbit.kaiyan.ui.fragment.AllHotFragment;
+import com.rabbit.kaiyan.ui.fragment.CategoryFragment;
 import com.rabbit.kaiyan.ui.fragment.DailyFragment;
 import com.rabbit.kaiyan.ui.fragment.DiscoveryFragment;
+import com.rabbit.kaiyan.ui.fragment.FollowFragment;
+import com.rabbit.kaiyan.ui.fragment.MineFragment;
+import com.rabbit.kaiyan.ui.fragment.MonthFragment;
+import com.rabbit.kaiyan.ui.fragment.RankHomeFragment;
 import com.rabbit.kaiyan.ui.fragment.RecommendFragment;
+import com.rabbit.kaiyan.ui.fragment.VideoFlowFragment;
+import com.rabbit.kaiyan.ui.fragment.WeekFragment;
 
 import dagger.Component;
 
@@ -28,6 +36,21 @@ public interface FragmentComponent {
 
     void inject(DiscoveryFragment discoveryFragment);
 
+    void inject(FollowFragment followFragment);
+
+    void inject(CategoryFragment categoryFragment);
+
+    void inject(RankHomeFragment rankHomeFragment);
+
+    void inject(WeekFragment weekListFragment);
+
+    void inject(MonthFragment monthListFragment);
+
+    void inject(AllHotFragment allHotFragment);
+
+    void inject(MineFragment mineFragment);
+
+    void inject(VideoFlowFragment videoFlowFragment);
 //    void inject(TestFragment testFragment);
 
 //    void inject(HotFragment hotFragment);

@@ -45,7 +45,6 @@ public class DailyFragment extends RootFragment<DailyPresenter> implements Daily
     boolean isVisiable;
 
     private List<ItemListBean> itemListBeans = new ArrayList<>();
-    private List<ItemListBean> firstItemListBeans = new ArrayList<>();
 
     @Override
     protected void initInject() {

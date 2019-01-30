@@ -10,5 +10,7 @@
     <color name="colorLakeBlue">#39afff</color>
     <color name="colorLightGray">#d3d3d3</color>
     <color name="colorDarkGray">#717171</color>
-
+    <color name="transparent">#00ffffff</color>
+    <color name="textSelectColor">#393E46</color>
+    <color name="textUnselectColor">#66000000</color>
 </resources>

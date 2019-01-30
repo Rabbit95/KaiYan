@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite">
-
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl_recommend"
         android:layout_width="match_parent"
@@ -26,5 +25,4 @@
         android:text="-- 看看别的叭 --"
         android:textColor="@color/colorBlack"
         android:textSize="45px" />
-
 </RelativeLayout>

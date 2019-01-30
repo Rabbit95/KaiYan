@@ -24,7 +24,6 @@ public class RecommendPresenter extends RxPresenter<RecommendContract.View> impl
     List<ItemListBean> moreCategoryListBeans = new ArrayList<>();
 
 
-    String TAG = "--------------";
     @Inject
     public RecommendPresenter(DataManager mDataManager) {
         this.mDataManager = mDataManager;

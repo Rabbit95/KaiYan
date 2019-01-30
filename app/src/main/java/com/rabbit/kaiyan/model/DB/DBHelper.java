@@ -1,6 +1,11 @@
 package com.rabbit.kaiyan.model.DB;
 
+import com.rabbit.kaiyan.model.beans.DownloadBean;
+import com.rabbit.kaiyan.model.beans.HistoryBean;
 import com.rabbit.kaiyan.model.beans.ItemListBean;
+import com.rabbit.kaiyan.model.beans.LikeBean;
+
+import java.util.List;
 
 /**
      * @type
@@ -18,18 +23,17 @@ public interface DBHelper {
 
     void deleteReadId(int id);
 
-//    List<HistoryBean> getHistoryBeans();
+    List<HistoryBean> getHistoryBeans();
 
-//    List<LikeBean> getLikeBeans();
+    List<LikeBean> getLikeBeans();
 
-
-//    HistoryBean getHistoryBean(int id);
+    HistoryBean getHistoryBean(int id);
 
     boolean checkLike(int id);
 
     int checkDownload(int id);
 
-//    List<DownloadBean> getDownloadBeans();
+    List<DownloadBean> getDownloadBeans();
 
     void insertDownloadId(ItemListBean itemListBean);
 

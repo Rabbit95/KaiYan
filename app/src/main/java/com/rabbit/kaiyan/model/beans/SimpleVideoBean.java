@@ -6,11 +6,12 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleVideoBean {
+public class SimpleVideoBean implements Serializable {
     /**
      * id : 141514
      * resourceType : video

@@ -5,8 +5,14 @@ import android.app.Activity;
 
 import com.rabbit.kaiyan.di.module.ActivityModule;
 import com.rabbit.kaiyan.di.scope.ActivityScope;
+import com.rabbit.kaiyan.ui.activity.DownloadActivity;
+import com.rabbit.kaiyan.ui.activity.CategoryActivity;
 import com.rabbit.kaiyan.ui.activity.DetailActivity;
+import com.rabbit.kaiyan.ui.activity.LikeActivity;
+import com.rabbit.kaiyan.ui.activity.LoginActivity;
 import com.rabbit.kaiyan.ui.activity.MainActivity;
+import com.rabbit.kaiyan.ui.activity.HistoryActivity;
+import com.rabbit.kaiyan.ui.activity.SettingActivity;
 
 import dagger.Component;
 
@@ -29,9 +35,19 @@ public interface ActivityComponent {
 
     void inject(DetailActivity detailActivity);
 
+    void inject(CategoryActivity categoryActivity);
+
+    void inject(LoginActivity loginActivity);
+
 //    void inject(HistoryActivity historyActivity);
 //
-//    void inject(LikeActivity likeActivity);
+    void inject(LikeActivity likeActivity);
+
+    void inject(HistoryActivity recorderActivity);
+
+    void inject(DownloadActivity cacheActivity);
+
+    void inject(SettingActivity settingActivity);
 //
 //    void inject(DownloadActivity downloadActivity);
 //

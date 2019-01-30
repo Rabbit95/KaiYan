@@ -64,28 +64,55 @@ public class DetailAdapter extends BaseRecyclerAdapter<ItemListBean> {
     @Override
     public void convert(final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof InfoViewHolder) {
-            ((InfoViewHolder) holder).detailDescribe.setText(data.getData().getDescription());
-            int duration = data.getData().getDuration();
-            String time = duration / 60 + "'" + duration % 60 + "''";
-            ((InfoViewHolder) holder).detailTag.setText("#" + data.getData().getCategory() + " / " + time + " / " + "开眼精选");
-            ((InfoViewHolder) holder).detailTitle.setText(data.getData().getTitle());
-            likeCount = data.getData().getConsumption().getCollectionCount();
+            String description, detailTitle, textAuthor, textdiscribtion, iconAuthor, time, category;
+            int duration, replynum, sharenum;
+            if (data.getType().equals("followCard")) {
+                description = data.getData().getContent().getData().getDescription();
+                duration = data.getData().getContent().getData().getDuration();
+                time = duration / 60 + "'" + duration % 60 + "''";
+                category = data.getData().getContent().getData().getCategory();
+                detailTitle = data.getData().getContent().getData().getTitle();
+                likeCount = data.getData().getContent().getData().getConsumption().getCollectionCount();
+                replynum = data.getData().getContent().getData().getConsumption().getReplyCount();
+                sharenum = data.getData().getContent().getData().getConsumption().getShareCount();
+                textAuthor = data.getData().getContent().getData().getAuthor().getName();
+                textdiscribtion = data.getData().getContent().getData().getAuthor().getDescription();
+                iconAuthor = data.getData().getContent().getData().getAuthor().getIcon();
+            } else {
+                description = data.getData().getDescription();
+                duration = data.getData().getDuration();
+                time = duration / 60 + "'" + duration % 60 + "''";
+                category = data.getData().getCategory();
+                detailTitle = data.getData().getTitle();
+                likeCount = data.getData().getConsumption().getCollectionCount();
+                replynum = data.getData().getConsumption().getReplyCount();
+                sharenum = data.getData().getConsumption().getShareCount();
+                textAuthor = data.getData().getAuthor().getName();
+                textdiscribtion = data.getData().getAuthor().getDescription();
+                iconAuthor = data.getData().getAuthor().getIcon();
+            }
+            ((InfoViewHolder) holder).detailDescribe.setText(description);
+            ((InfoViewHolder) holder).detailTag.setText("#" + category + " / " + time + " / " + "开眼精选");
+            ((InfoViewHolder) holder).detailTitle.setText(detailTitle);
+//            likeCount = data.getData().getConsumption().getCollectionCount();
             if (islike) {
                 likeCount++;
             }
             ((InfoViewHolder) holder).likenum.setText("" + likeCount);
             ((InfoViewHolder) holder).likenum.setSelected(islike);
-            ((InfoViewHolder) holder).replynum.setText("" + data.getData().getConsumption().getReplyCount());
-            ((InfoViewHolder) holder).sharenum.setText("" + data.getData().getConsumption().getShareCount());
+            ((InfoViewHolder) holder).replynum.setText("" + replynum);
+            ((InfoViewHolder) holder).sharenum.setText("" + sharenum);
+
             if (data.getData().getAuthor() == null) {
                 ((InfoViewHolder) holder).textAuthor.setVisibility(View.GONE);
                 ((InfoViewHolder) holder).textdiscribtion.setVisibility(View.GONE);
                 ((InfoViewHolder) holder).imageAuthor.setVisibility(View.GONE);
             } else {
-                ((InfoViewHolder) holder).textAuthor.setText(data.getData().getAuthor().getName());
-                ((InfoViewHolder) holder).textdiscribtion.setText(data.getData().getAuthor().getDescription());
-                ImageLoader.loadCircle(mContext, data.getData().getAuthor().getIcon(), ((InfoViewHolder) holder).imageAuthor);
+                ((InfoViewHolder) holder).textAuthor.setText(textAuthor);
+                ((InfoViewHolder) holder).textdiscribtion.setText(textdiscribtion);
+                ImageLoader.loadCircle(mContext, iconAuthor, ((InfoViewHolder) holder).imageAuthor);
             }
+
             ((InfoViewHolder) holder).likenum.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

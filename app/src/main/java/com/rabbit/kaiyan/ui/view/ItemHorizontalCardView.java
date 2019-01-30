@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -64,5 +65,11 @@ public class ItemHorizontalCardView extends FrameLayout {
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mAdapter = new HorizontaCardAdapter(context, cardList);
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: ");
+            }
+        });
     }
 }

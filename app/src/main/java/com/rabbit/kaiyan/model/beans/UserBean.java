@@ -6,11 +6,12 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserBean {
+public class UserBean implements Serializable {
     /**
      * uid : 300052664
      * nickname : 洋

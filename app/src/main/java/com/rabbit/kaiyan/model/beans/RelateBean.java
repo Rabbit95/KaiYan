@@ -1,12 +1,13 @@
 package com.rabbit.kaiyan.model.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by hzj on 2018/1/2.
  */
 
-public class RelateBean {
+public class RelateBean implements Serializable {
 
 
     private int count;

@@ -1,6 +1,7 @@
 package com.rabbit.kaiyan.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.rabbit.kaiyan.R;
 import com.rabbit.kaiyan.component.ImageLoader;
 import com.rabbit.kaiyan.model.beans.ItemListBean;
+import com.rabbit.kaiyan.ui.activity.CategoryActivity;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class HorizontaCardAdapter extends RecyclerView.Adapter<HorizontaCardAdap
     private static final String TAG = "HorizontaCardAdapter";
     Context context;
     List<ItemListBean> cardList ;
+
 
     public HorizontaCardAdapter(Context context,List<ItemListBean> itemListBeans) {
         this.context = context;
@@ -34,9 +37,18 @@ public class HorizontaCardAdapter extends RecyclerView.Adapter<HorizontaCardAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, int i) {
+    public void onBindViewHolder(@NonNull Holder holder, final int i) {
         holder.textView.setText(cardList.get(0).getData().getItemList().get(i).getData().getTitle());
-        ImageLoader.loadSquare(context,cardList.get(0).getData().getItemList().get(i).getData().getImage(),holder.imageView);
+        ImageLoader.loadRound(context,cardList.get(0).getData().getItemList().get(i).getData().getImage(),holder.imageView);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(context, CategoryActivity.class);
+                intent.putExtra("CategoryID",cardList.get(0).getData().getItemList().get(i).getData().getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

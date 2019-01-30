@@ -54,7 +54,7 @@ public class DataBean implements Serializable {
     private Object playlists;
     private Object src;
     private List<TagsBean> tags;
-    private List<?> playInfo;
+    private List<PlayInfoBean> playInfo;
     private List<?> subtitles;
     private String text;
     private List<ItemListBean> itemList;
@@ -81,6 +81,16 @@ public class DataBean implements Serializable {
     private HotReplyBean reply;
     private SimpleVideoBean simpleVideo;
     private String createDate;
+
+    private String coverForFeed;
+
+    public String getCoverForFeed() {
+        return coverForFeed;
+    }
+
+    public void setCoverForFeed(String coverForFeed) {
+        this.coverForFeed = coverForFeed;
+    }
 
     public String getCreateDate() {
         return createDate;
@@ -442,11 +452,11 @@ public class DataBean implements Serializable {
         this.tags = tags;
     }
 
-    public List<?> getPlayInfo() {
+    public List<PlayInfoBean> getPlayInfo() {
         return playInfo;
     }
 
-    public void setPlayInfo(List<?> playInfo) {
+    public void setPlayInfo(List<PlayInfoBean> playInfo) {
         this.playInfo = playInfo;
     }
 

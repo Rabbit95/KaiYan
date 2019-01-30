@@ -72,7 +72,7 @@ public class RecommendAdapter extends BaseRecyclerAdapter<ItemListBean> {
                 }
             });
         } else if (view instanceof TopPageView) {
-            ((TopPageView)view).setData(topDataList);
+            ((TopPageView)view).setData(topDataList,false);
         } else if(view instanceof ListEndView){
             ((ListEndView) view).setData(loadState);
         } else {

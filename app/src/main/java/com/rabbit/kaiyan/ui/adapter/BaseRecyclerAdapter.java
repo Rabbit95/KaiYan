@@ -16,6 +16,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter{
     public final int LOADING_COMPLETE = 2;
     public final int LOADING_END = 3;
     public final int LIST_END = 4;
+    public final int DATA_END = 5;
 
     protected List<T> datas = new ArrayList<>();
     protected Context mContext;

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import com.rabbit.kaiyan.R;
 import com.rabbit.kaiyan.component.ImageLoader;
 import com.rabbit.kaiyan.model.beans.ItemListBean;
-import com.rabbit.kaiyan.ui.activity.DetailActivity;
+import com.rabbit.kaiyan.ui.activity.WEBViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class BannerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(context, DetailActivity.class);
+                intent.setClass(context, WEBViewActivity.class);
                 ItemListBean itemListBean = listBeans.get(position);
                 intent.putExtra("itemListBean", itemListBean);
                 context.startActivity(intent);

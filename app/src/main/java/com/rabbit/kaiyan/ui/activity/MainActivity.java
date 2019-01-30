@@ -3,6 +3,7 @@ package com.rabbit.kaiyan.ui.activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.flyco.tablayout.CommonTabLayout;
@@ -17,7 +18,9 @@ import com.rabbit.kaiyan.model.beans.TabEntity;
 import com.rabbit.kaiyan.presenter.MainPresenter;
 import com.rabbit.kaiyan.ui.adapter.FragmentAdapter;
 import com.rabbit.kaiyan.ui.fragment.HomeFragment;
-import com.rabbit.kaiyan.ui.fragment.OtherFragment;
+import com.rabbit.kaiyan.ui.fragment.MineFragment;
+import com.rabbit.kaiyan.ui.fragment.RankHomeFragment;
+import com.rabbit.kaiyan.ui.fragment.VideoFlowFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +33,13 @@ import butterknife.BindView;
      * @creat time 2018/11/26 16:51.
 **/
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
-
+    private static final String TAG = "MainActivity";
     @BindView(R.id.vp_main)
     ViewPager mViewPager;
     @BindView(R.id.tl_main)
     CommonTabLayout mTabLayout;
 
-    String[] tabTitle = new String[]{"首页", "热门", "专栏", "我"};
+    String[] tabTitle = new String[]{"首页", "热门", "流", "我"};
     int[] tabIcon = new int[]{
             R.mipmap.ic_tab_strip_icon_feed, R.mipmap.ic_tab_strip_icon_follow, R.mipmap.ic_tab_strip_icon_category, R.mipmap.ic_tab_strip_icon_profile
     };
@@ -47,16 +50,16 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     FragmentAdapter mAdapter;
     List<Fragment> fragments = new ArrayList<Fragment>();
     ArrayList<CustomTabEntity> tabEntities = new ArrayList<>();
+    private RelativeLayout.LayoutParams layoutParams;
     private long exitTime;
 
     @Override
     protected void initEventAndData() {
         FileDownloader.setup(mContext);
         fragments.add(new HomeFragment());
-        fragments.add(OtherFragment.getInstance(tabTitle[1]));
-        fragments.add(OtherFragment.getInstance(tabTitle[2]));
-        fragments.add(OtherFragment.getInstance(tabTitle[3]));
-
+        fragments.add(new RankHomeFragment());
+        fragments.add(new VideoFlowFragment());
+        fragments.add(new MineFragment());
         mAdapter = new FragmentAdapter(getSupportFragmentManager(), fragments,tabTitle);
 
         for (int i = 0; i < tabTitle.length; i++) {
@@ -72,6 +75,17 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             @Override
             public void onTabSelect(int position) {
                 mViewPager.setCurrentItem(position);
+                if(position == 2){
+                    mTabLayout.setBackgroundResource(R.color.transparent);
+                    layoutParams = new RelativeLayout.LayoutParams(mViewPager.getLayoutParams());
+                    layoutParams.removeRule(RelativeLayout.ABOVE);
+                    mViewPager.setLayoutParams(layoutParams);
+                }else{
+                    mTabLayout.setBackgroundResource(R.color.colorWhite);
+                    layoutParams = new RelativeLayout.LayoutParams(mViewPager.getLayoutParams());
+                    layoutParams.addRule(RelativeLayout.ABOVE,R.id.tl_main);
+                    mViewPager.setLayoutParams(layoutParams);
+                }
             }
 
             @Override
@@ -134,4 +148,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     protected void initInject() {
         getActivityComponent().inject(this);
     }
+
+
 }

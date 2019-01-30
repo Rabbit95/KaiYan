@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWhite">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/colorWhite">
+
+        <ImageView
+            android:id="@+id/iv_mine_avatars"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/pgc_default_avatar"/>
+
+        <TextView
+            android:id="@+id/tv_mine_name"
+            android:layout_below="@+id/iv_mine_avatars"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="18dp"
+            android:layout_marginBottom="30dp"/>
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/bt_mine_like"
+                android:text="我的喜欢"
+                android:textSize="18dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorLightGray"/>
+            <Button
+                android:id="@+id/bt_mine_cache"
+                android:text="我的缓存"
+                android:textSize="18dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <include layout="@layout/item_splitline"/>
+    <TextView
+        android:id="@+id/tv_mine_history"
+        android:text="观看记录"
+        android:textSize="18dp"
+        android:textColor="@color/colorBlack"
+        android:paddingTop="40dp"
+        android:paddingBottom="20dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_mine_setting"
+        android:text="我的设置"
+        android:textSize="18dp"
+        android:textColor="@color/colorBlack"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_mine_exit"
+        android:text="退出登录"
+        android:textSize="18dp"
+        android:textColor="@color/colorBlack"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_mine_about"
+        android:text="关于开眼"
+        android:textSize="18dp"
+        android:textColor="@color/colorBlack"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="Version 0.0.1"
+        android:paddingTop="100dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

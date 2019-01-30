@@ -86,6 +86,14 @@ public class AuthorBean implements Serializable{
 
     }
 
+    public ShieldBean getShield() {
+        return shield;
+    }
+
+    public void setShield(ShieldBean shield) {
+        this.shield = shield;
+    }
+
     public int getId() {
         return id;
     }

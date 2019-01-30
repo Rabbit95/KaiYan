@@ -48,7 +48,11 @@ public class ListEndView extends FrameLayout {
                 break;
             case 4:
                 textEnd.setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
-                textEnd.setText(R.string.recycleView_end);
+                textEnd.setText(R.string.recycleview_list_end);
+                break;
+            case 5:
+                textEnd.setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
+                textEnd.setText(R.string.recycleview_data_end);
                 break;
         }
     }

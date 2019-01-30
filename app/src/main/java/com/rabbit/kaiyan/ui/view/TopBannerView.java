@@ -25,7 +25,7 @@ public class TopBannerView extends FrameLayout {
 
 
     BannerAdapter bannerAdapter;
-    List<ItemListBean> listBeans;
+    List<ItemListBean> topItemList;
 
     int newPosition;
     @BindView(R.id.vp_top)
@@ -60,8 +60,8 @@ public class TopBannerView extends FrameLayout {
     }
 
     public void setData(List<ItemListBean> itemListBeans,int position) {
-        this.listBeans = itemListBeans;
-        bannerAdapter = new BannerAdapter(context, listBeans);
+        this.topItemList = itemListBeans;
+        bannerAdapter = new BannerAdapter(context, topItemList);
         viewPager.setPageMargin(20);
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(bannerAdapter);
@@ -120,7 +120,7 @@ public class TopBannerView extends FrameLayout {
     }
 
     public void changeTopPageView() {
-        if (newPosition < listBeans.size()) {
+        if (newPosition < topItemList.size()) {
             viewPager.setCurrentItem(newPosition);
         } else {
             newPosition = 0;

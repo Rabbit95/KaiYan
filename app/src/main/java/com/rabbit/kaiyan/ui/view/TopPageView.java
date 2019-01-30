@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TopPageView extends FrameLayout{
+
+    private static final String TAG = "TopPageView";
 
     Context context;
 
@@ -43,6 +46,8 @@ public class TopPageView extends FrameLayout{
     List<ItemListBean> listBeans;
 
     int newPosition;
+
+    boolean isCategoryData = false;
 
     public TopPageView(@NonNull Context context) {
         this(context, null);
@@ -67,7 +72,8 @@ public class TopPageView extends FrameLayout{
         ButterKnife.bind(this);
     }
 
-    public void setData(List<ItemListBean> itemListBeans) {
+    public void setData(List<ItemListBean> itemListBeans,boolean isCategoryData) {
+        this.isCategoryData = isCategoryData;
         this.listBeans = itemListBeans;
         topAdapter = new TopAdapter(context, listBeans);
         viewPager.setPageMargin(20);
@@ -75,21 +81,17 @@ public class TopPageView extends FrameLayout{
         viewPager.setAdapter(topAdapter);
         setOnPageChange();
         addIndicator(listBeans.size());
-        topDes.setText(listBeans.get(0).getData().getSlogan());
-        topTitle.setText(listBeans.get(0).getData().getTitle());
-        ImageLoader.loadCircle(context,listBeans.get(0).getData().getAuthor().getIcon(),imageView);
+        Log.d(TAG, "data size:"+listBeans.size());
+        if(this.isCategoryData){
+            topTitle.setText(listBeans.get(0).getData().getTitle());
+            topDes.setText(listBeans.get(0).getData().getAuthor().getName() + "  #"+listBeans.get(0).getData().getCategory());
+            ImageLoader.loadCircle(context,listBeans.get(0).getData().getAuthor().getIcon(),imageView);
+        }else{
+            topDes.setText(listBeans.get(0).getData().getSlogan());
+            topTitle.setText(listBeans.get(0).getData().getTitle());
+            ImageLoader.loadCircle(context,listBeans.get(0).getData().getAuthor().getIcon(),imageView);
+        }
     }
-
-
-//    public void setData(List<ItemListBean> itemListBeans) {
-//        this.listBeans = itemListBeans;
-//        topAdapter = new TopAdapter(context, listBeans);
-//        viewPager.setAdapter(topAdapter);
-//        setOnPageChange();
-//        addIndicator(listBeans.size());
-//        topDes.setText(listBeans.get(0).getData().getSlogan());
-//        topTitle.setText(listBeans.get(0).getData().getTitle());
-//    }
 
     private void addIndicator(int size) {
 //        indicators.removeAllViews();
@@ -112,9 +114,16 @@ public class TopPageView extends FrameLayout{
                 topDes.setWithAnimation(true);
                 topTitle.setWithAnimation(true);
                 newPosition = position + 1;
-                topDes.setText(listBeans.get(position).getData().getSlogan());
-                topTitle.setText(listBeans.get(position).getData().getTitle());
-                ImageLoader.loadCircle(context,listBeans.get(position).getData().getAuthor().getIcon(),imageView);
+                if(isCategoryData) {
+                    topTitle.setText(listBeans.get(position).getData().getTitle());
+                    topDes.setText(listBeans.get(position).getData().getAuthor().getName() + " #"+listBeans.get(0).getData().getCategory());
+                    ImageLoader.loadCircle(context,listBeans.get(position).getData().getAuthor().getIcon(),imageView);
+                }else {
+                    topDes.setText(listBeans.get(position).getData().getSlogan());
+                    topTitle.setText(listBeans.get(position).getData().getTitle());
+                    ImageLoader.loadCircle(context, listBeans.get(position).getData().getAuthor().getIcon(), imageView);
+                }
+
                 for (int j = 0; j < listBeans.size(); j++) {
 //                    if (j == position) {
 //                        ((Indicator) indicators.getChildAt(j)).setImageView(true);

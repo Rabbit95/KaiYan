@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
+    private static final String TAG = "HomeFragment";
+
 //    @BindView(R.id.tl_home)
     SlidingTabLayout tabLayout;
 //    @BindView(R.id.vp_home)
@@ -27,8 +29,11 @@ public class HomeFragment extends Fragment {
     //, "开胃", "创意", "运动", "音乐","搞笑", "萌宠"
     //            , "剧情", "科技", "旅游", "影视", "记录", "游戏", "综艺", "时尚"
     private final String[] mTitles = {
-            "关注", "发现", "推荐" , "日报", "广告", "生活", "动画", "搞笑"
+            "关注", "发现", "推荐" , "日报", "广告", "生活", "动画", "搞笑", "开胃", "创意", "运动", "音乐", "萌宠" , "剧情", "科技", "旅行", "影视", "记录", "游戏", "综艺", "时尚","集锦"
     };
+    //"广告", "生活", "动画", "搞笑", "开胃", "创意", "运动", "音乐","搞笑", "萌宠" , "剧情", "科技", "旅游", "影视", "记录", "游戏", "综艺", "时尚"，"锦集"
+    private final int[] mCategoryID = {99,99,99,99,14,36,10,28,4,2,18,20,26,12,32,6,8,22,30,38,24,34};
+
     public static HomeFragment getInstance(){
         HomeFragment hf = new HomeFragment();
         return hf;
@@ -46,13 +51,16 @@ public class HomeFragment extends Fragment {
         tabLayout = v.findViewById(R.id.tl_home);
         viewPager = v.findViewById(R.id.vp_home);
 
-        mFragments.add(OtherFragment.getInstance(mTitles[0]));
+        mFragments.add(new FollowFragment());
         mFragments.add(new DiscoveryFragment());
         mFragments.add(new RecommendFragment());
-//        mFragments.add(OtherFragment.getInstance(mTitles[3]));
         mFragments.add(new DailyFragment());
-        for (int i = 4; i < 8; i++){
-            mFragments.add(OtherFragment.getInstance(mTitles[i]));
+
+//        Log.d(TAG, "mTitle size"+mTitles.length);
+//        Log.d(TAG, "mCategory size"+mCategoryID.length);
+        //各个分类的Fragment,ID区分
+        for (int i = 4; i < mTitles.length; i++){
+            mFragments.add(CategoryFragment.setCategoryID(mCategoryID[i]));
         }
 
         mAdapter = new FragmentAdapter(getChildFragmentManager(),mFragments,mTitles);

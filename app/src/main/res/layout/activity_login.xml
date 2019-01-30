@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/landing_background">
+    <ImageView
+        android:id="@+id/iv_account_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_action_detail_close"
+        android:padding="5dp"/>
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_account_login_header"/>
+    <RelativeLayout
+        android:id="@+id/rl_account"
+        android:paddingTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/account_name_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_account_login_user_name"
+            android:layout_alignBottom="@+id/et_account_name" />
+        <ImageView
+            android:id="@+id/account_pass_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/account_name_icon"
+            android:layout_alignBottom="@+id/et_account_pass"
+            android:src="@mipmap/ic_account_login_password"/>
+        <EditText
+            android:hint="Yes! enter your username"
+            android:textColorHint="@color/colorWhite"
+            android:textSize="12dp"
+            android:id="@+id/et_account_name"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/account_name_icon"/>
+        <EditText
+            android:hint="Yes! enter your password"
+            android:textColorHint="@color/colorWhite"
+            android:textSize="12dp"
+            android:id="@+id/et_account_pass"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_account_name"
+            android:layout_toRightOf="@+id/account_pass_icon"/>
+        <Button
+            android:text="登录"
+            android:id="@+id/bt_account_login"
+            android:layout_below="@+id/et_account_pass"
+            android:layout_marginTop="10dp"
+            android:layout_width="220dp"
+            android:layout_height="35dp"
+            android:background="#5599"
+            android:textColor="@color/colorWhite"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:text="用户注册"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/bt_account_login"
+            android:textColor="@color/colorWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -15,5 +15,7 @@
     <string name="about_address">https://github.com/zhijianhuang/EyesOpener</string>
     <string name="recycleview_loding">----- ٩(ˊᗜˋ*) 来抓我鸭 -----</string>
     <string name="recycleview_loding_end">----- 被抓到了(｡•́︿•̀｡)  -----</string>
-    <string name="recycleView_end">----- 看看别的叭(〃･̆ ･̆〃) -----</string>
+    <string name="recycleview_list_end">----- 看看别的叭(〃･̆ ･̆〃) -----</string>
+    <string name="recycleview_data_end">----- 就这么多了(｡•́︿•̀｡)  -----</string>
+    <string name="unlogin">登录解锁更多功能</string>
 </resources>

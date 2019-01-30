@@ -2,7 +2,9 @@ package com.rabbit.kaiyan.App;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 
+import com.danikula.videocache.HttpProxyCacheServer;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.github.moduth.blockcanary.BlockCanaryContext;
 import com.rabbit.kaiyan.di.component.AppComponent;
@@ -27,7 +29,7 @@ public class App extends Application {
     public static AppComponent appComponent;
     private static App app;
     private static Set<Activity> activities;
-
+    private static HttpProxyCacheServer proxy;
     public static synchronized App getApp() {
         return app;
     }
@@ -95,5 +97,17 @@ public class App extends Application {
         if (activities != null) {
             activities.remove(activity);
         }
+    }
+
+    /**
+    * @explain 本地代理服务器
+    **/
+    public static HttpProxyCacheServer getProxy(Context context){
+//        App app = (App) context.getApplicationContext();
+        return app.proxy == null ? (app.proxy = app.newProxy()) : app.proxy;
+    }
+
+    private HttpProxyCacheServer newProxy(){
+        return new HttpProxyCacheServer(this);
     }
 }

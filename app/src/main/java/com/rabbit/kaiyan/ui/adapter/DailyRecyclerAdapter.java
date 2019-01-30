@@ -59,7 +59,6 @@ public class DailyRecyclerAdapter extends BaseRecyclerAdapter<ItemListBean>{
         } else {
             itemView = new ItemDailyView(mContext);
         }
-
         itemView.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
         return new Holder(itemView);
     }
@@ -95,6 +94,8 @@ public class DailyRecyclerAdapter extends BaseRecyclerAdapter<ItemListBean>{
         datas.clear();
         datas.addAll(listBeans);
         diffResult.dispatchUpdatesTo(this);
+        notifyDataSetChanged();
+
     }
 
     public void addTopData(List<ItemListBean> listBeans) {

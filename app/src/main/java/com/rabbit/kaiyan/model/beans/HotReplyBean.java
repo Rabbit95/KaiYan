@@ -6,11 +6,12 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HotReplyBean {
+public class HotReplyBean implements Serializable {
     /**
      * id : 1071394071269867520
      * videoId : 141514

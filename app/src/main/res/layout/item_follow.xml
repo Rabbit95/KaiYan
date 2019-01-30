@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+    <ImageView
+        android:id="@+id/iv_follow_head"
+        android:paddingLeft="5dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_centerVertical="true"/>
+    <TextView
+        android:text="兔子"
+        android:id="@+id/tv_follow_author"
+        android:layout_toRightOf="@+id/iv_follow_head"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:textSize="18dp"/>
+    <TextView
+        android:id="@+id/tv_follow_release"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_follow_author"
+        android:layout_toRightOf="@+id/iv_follow_head"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="发布：" />
+    <TextView
+        android:text="赵立平：大树细菌"
+        android:id="@+id/tv_follow_titlePgc"
+        android:layout_toRightOf="@+id/tv_follow_release"
+        android:layout_alignBottom="@+id/tv_follow_release"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"/>
+    <TextView
+        android:text="#科普"
+        android:gravity="right"
+        android:layout_toRightOf="@+id/tv_follow_titlePgc"
+        android:layout_alignBottom="@+id/tv_follow_titlePgc"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorLakeBlue"/>
+    <TextView
+        android:id="@+id/tv_follow_descriptionPgc"
+        android:text="赵立平，美国罗格斯大学、上海交通大学微生物学教授"
+        android:layout_below="@+id/iv_follow_head"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"/>
+    <com.shuyu.gsyvideoplayer.video.ListGSYVideoPlayer
+        android:id="@+id/video_players"
+        android:layout_below="@+id/tv_follow_descriptionPgc"
+        android:layout_width="match_parent"
+        android:layout_height="250dp" />
+
+</RelativeLayout>

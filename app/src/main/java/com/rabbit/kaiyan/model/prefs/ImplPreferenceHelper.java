@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.rabbit.kaiyan.App.App;
 import com.rabbit.kaiyan.App.Constants;
+import com.rabbit.kaiyan.model.beans.UserInfoBean;
 
 import javax.inject.Inject;
 
@@ -16,6 +17,8 @@ import javax.inject.Inject;
      * @creat time 2018/11/20 14:54.
 **/
 public class ImplPreferenceHelper implements  PreferenceHelper{
+
+    private static final String TAG = "ImplPreferenceHelper";
 
     private static final Boolean DEFAULT_DOWNLOADSETTING = false;
     private static final Boolean DEFAULT_PLAYSETTING = false;
@@ -57,5 +60,20 @@ public class ImplPreferenceHelper implements  PreferenceHelper{
     @Override
     public void setDownloadStting(boolean downloadStting) {
         preferences.edit().putBoolean(Constants.DOWNLOADSETTING,downloadStting).apply();
+    }
+    
+    /**
+    * @explain 保存用户信息
+    **/
+    @Override
+    public void saveUserInfo(UserInfoBean user) {
+        preferences.edit().putString("username",user.getUsername()).apply();
+    }
+    /**
+    * @explain  获取用户名 / 后期可能改成获取cookie
+    **/
+    @Override
+    public String getUserName() {
+        return preferences.getString("username",null);
     }
 }

@@ -6,6 +6,7 @@ import com.rabbit.kaiyan.util.SystemUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -14,6 +15,7 @@ import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -48,7 +50,7 @@ public class HttpModule {
     @Singleton
     Retrofit provideRetrofit(Retrofit.Builder builder, OkHttpClient okHttpClient) {
         return builder
-                .baseUrl(Api.HOST)
+                .baseUrl(Api.KaiYan_API)
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -100,6 +102,8 @@ public class HttpModule {
         builder.writeTimeout(20, TimeUnit.SECONDS);
         //错误重连
         builder.retryOnConnectionFailure(true);
+        //多地址配置
+        builder.addInterceptor(new MoreBaseUrlInterceptor());
         return builder.build();
     }
 
@@ -114,5 +118,36 @@ public class HttpModule {
     OkHttpClient.Builder provideOkhttpClientBuilder() {
         return new OkHttpClient.Builder();
     }
-
+    
+    /**
+    * @explain 多地址拦截器
+    **/
+    public class MoreBaseUrlInterceptor implements Interceptor{
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request originalRequest = chain.request();
+            HttpUrl oldUrl = originalRequest.url();
+            Request.Builder builder = originalRequest.newBuilder();
+            List<String> urlNameList = originalRequest.headers("URL");
+            if(urlNameList != null && urlNameList.size() > 0){
+                builder.removeHeader("URL");
+                String URL = urlNameList.get(0);
+                HttpUrl baseUrl = null;
+                if("KaiYan".equals(URL)){
+                    baseUrl = HttpUrl.parse(Api.KaiYan_API);
+                }else if("My".equals(URL)){
+                    baseUrl = HttpUrl.parse(Api.My_API);
+                }
+                HttpUrl newHttpUrl = oldUrl.newBuilder()
+                        .scheme(baseUrl.scheme())
+                        .host(baseUrl.host())
+                        .port(baseUrl.port())
+                        .build();
+                Request newRequest = builder.url(newHttpUrl).build();
+                return chain.proceed(newRequest);
+            }else{
+                return chain.proceed(originalRequest);
+            }
+        }
+    }
 }

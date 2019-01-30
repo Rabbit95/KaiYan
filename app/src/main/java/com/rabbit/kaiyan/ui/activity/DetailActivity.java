@@ -1,9 +1,12 @@
 package com.rabbit.kaiyan.ui.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -19,6 +22,7 @@ import com.rabbit.kaiyan.model.beans.ReplyBean;
 import com.rabbit.kaiyan.presenter.DetailPresenter;
 import com.rabbit.kaiyan.ui.adapter.DetailAdapter;
 import com.rabbit.kaiyan.ui.view.ReplyView;
+import com.rabbit.kaiyan.util.SystemUtil;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.listener.GSYVideoProgressListener;
 import com.shuyu.gsyvideoplayer.listener.LockClickListener;
@@ -40,13 +44,11 @@ import butterknife.BindView;
 **/
 public class DetailActivity extends RootActivity<DetailPresenter> implements DetailContract.View {
 
-
     private static final String TAG = "DetaiActivity" ;
     @BindView(R.id.video_player)
     StandardGSYVideoPlayer videoPlayer;
     @BindView(R.id.view_main)
     RecyclerView recyclerView;
-
     String Url;
     ImageView imageView;
     LinearLayoutManager mLinearLayoutManager;
@@ -199,8 +201,11 @@ public class DetailActivity extends RootActivity<DetailPresenter> implements Det
                         break;
                     case 1:
                         //分享按钮，未实现
-                        Toast.makeText(mContext,"分享功能还没做好哦~",Toast.LENGTH_SHORT).show();
-
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_SEND);
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, itemListBean.getData().getWebUrl().getRaw());
+                        mContext.startActivity(Intent.createChooser(intent, "分享给……"));
                         break;
                     case 2:
                         //评论按钮
@@ -208,7 +213,11 @@ public class DetailActivity extends RootActivity<DetailPresenter> implements Det
                         break;
                     case 3:
                         //下载按钮
-
+                        if (SystemUtil.isWifiConnected() || notShowDownloadTip) {
+                            mPresenter.download(Url, itemListBean);
+                        } else {
+                            showDownloadDialog();
+                        }
                         break;
                 }
             }
@@ -236,9 +245,13 @@ public class DetailActivity extends RootActivity<DetailPresenter> implements Det
         mAdapter.getData(listBeans);
     }
 
+    /**
+    * @explain 根据点赞记录设置icon
+    **/
     @Override
-    public void setLike(boolean like) {
-
+    public void setLike(boolean islike) {
+        mAdapter.setlike(islike);
+        this.islike = islike;
     }
 
 
@@ -246,11 +259,19 @@ public class DetailActivity extends RootActivity<DetailPresenter> implements Det
     * @explain  获取启动此activity时，intent所传递过来的数据
     **/
     private void getIntentData() {
-        Url = itemListBean.getData().getPlayUrl();
-        id = itemListBean.getData().getId();
-        imageView = new ImageView(this);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        ImageLoader.load(this, getImageUrl(), imageView);
+        if(itemListBean.getType().equals("followCard")){
+            Url = itemListBean.getData().getContent().getData().getPlayUrl();
+            id = itemListBean.getData().getContent().getData().getId();
+            imageView = new ImageView(this);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            ImageLoader.load(this, itemListBean.getData().getContent().getData().getCover().getFeed(), imageView);
+        }else {
+            Url = itemListBean.getData().getPlayUrl();
+            id = itemListBean.getData().getId();
+            imageView = new ImageView(this);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            ImageLoader.load(this, getImageUrl(), imageView);
+        }
         if (!mPresenter.isRead(id)) {
             mPresenter.addToHistory(itemListBean);
         } else {
@@ -264,13 +285,16 @@ public class DetailActivity extends RootActivity<DetailPresenter> implements Det
     **/
     private String getImageUrl() {
         if (itemListBean.getData().getCover() == null) {
-//            return itemListBean.getData().getCoverForFeed();
-            return null;
+            return itemListBean.getData().getCoverForFeed();
+//            return null;
         } else {
             return itemListBean.getData().getCover().getFeed();
         }
     }
 
+    /**
+    * @explain 显示评论
+    **/
     @Override
     public void showReply(final ReplyBean replyBean) {
         mReplyView = new ReplyView(mContext);
@@ -308,6 +332,9 @@ public class DetailActivity extends RootActivity<DetailPresenter> implements Det
         });
     }
 
+    /**
+    * @explain 关闭评论
+    **/
     private boolean closeReply() {
         if (replyViews.size() == 0) {
             return false;
@@ -317,6 +344,9 @@ public class DetailActivity extends RootActivity<DetailPresenter> implements Det
         return true;
     }
 
+    /**
+    * @explain 上拉显示更多数据
+    **/
 
     @Override
     public void showMoreReply(ReplyBean replyBean) {
@@ -326,22 +356,47 @@ public class DetailActivity extends RootActivity<DetailPresenter> implements Det
 
     @Override
     public void showDownload() {
-
+        showToast("盘他！开始下载了~");
     }
 
     @Override
     public void showIsDownload() {
-
+        showToast("别点了！已经在盘了~");
     }
 
     @Override
     public void showHadDownload() {
-
+        showToast("这个盘过了！换一个盘吧~");
     }
+
+    private void showToast(String msg){
+        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+    * @explain Dialog询问是否使用流量下载视频
+    **/
 
     @Override
     public void showDownloadDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("确定用流量下载吗？")
+                .setMessage("当前未连接WIFI，确定要用流量下载吗？")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mPresenter.setDownloadSetting(true);
+                        mPresenter.download(Url, itemListBean);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
+                    }
+                });
+        Dialog dialog = builder.create();
+        dialog.show();
     }
 
 

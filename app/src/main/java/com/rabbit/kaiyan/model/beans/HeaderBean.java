@@ -45,6 +45,12 @@ public class HeaderBean implements Serializable {
     private Object icon;
     private Object description;
 
+    //关注
+    private boolean topShow;
+    private String issuerName;
+    private int tagId;
+    private String time;
+
     public static HeaderBean objectFromData(String str) {
 
         return new Gson().fromJson(str, HeaderBean.class);

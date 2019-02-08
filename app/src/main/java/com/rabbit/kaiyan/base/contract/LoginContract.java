@@ -7,8 +7,10 @@ public interface LoginContract {
     interface View extends BaseView {
         void showToastMsg(String msg);
         void closeView();
+        void changeView();
     }
     interface Presenter extends BasePresenter<LoginContract.View> {
         void checkAccount(String username,String password);
+        void register(String username,String password,String email);
     }
 }

@@ -12,6 +12,7 @@ import com.rabbit.kaiyan.ui.activity.LikeActivity;
 import com.rabbit.kaiyan.ui.activity.LoginActivity;
 import com.rabbit.kaiyan.ui.activity.MainActivity;
 import com.rabbit.kaiyan.ui.activity.HistoryActivity;
+import com.rabbit.kaiyan.ui.activity.SearchActivity;
 import com.rabbit.kaiyan.ui.activity.SettingActivity;
 
 import dagger.Component;
@@ -48,6 +49,8 @@ public interface ActivityComponent {
     void inject(DownloadActivity cacheActivity);
 
     void inject(SettingActivity settingActivity);
+
+    void inject(SearchActivity searchActivity);
 //
 //    void inject(DownloadActivity downloadActivity);
 //

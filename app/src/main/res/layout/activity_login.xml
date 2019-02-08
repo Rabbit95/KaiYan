@@ -28,7 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_account_login_user_name"
-            android:layout_alignBottom="@+id/et_account_name" />
+            android:layout_alignBottom="@+id/et_account_name"
+            android:layout_marginBottom="5dp"/>
         <ImageView
             android:id="@+id/account_pass_icon"
             android:layout_width="wrap_content"
@@ -36,10 +37,21 @@
             android:layout_below="@+id/account_name_icon"
             android:layout_alignBottom="@+id/et_account_pass"
             android:src="@mipmap/ic_account_login_password"/>
+        <ImageView
+            android:id="@+id/account_email_icon"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/account_pass_icon"
+            android:layout_alignRight="@+id/account_pass_icon"
+            android:src="@mipmap/link_icon"
+            android:visibility="gone"/>
+
         <EditText
             android:hint="Yes! enter your username"
             android:textColorHint="@color/colorWhite"
             android:textSize="12dp"
+            android:textColor="@color/colorWhite"
             android:id="@+id/et_account_name"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -48,15 +60,27 @@
             android:hint="Yes! enter your password"
             android:textColorHint="@color/colorWhite"
             android:textSize="12dp"
+            android:textColor="@color/colorWhite"
             android:id="@+id/et_account_pass"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/et_account_name"
             android:layout_toRightOf="@+id/account_pass_icon"/>
+        <EditText
+            android:hint="Yes! enter your emailaddr"
+            android:textColorHint="@color/colorWhite"
+            android:textSize="12dp"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/et_account_email"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_account_pass"
+            android:layout_toRightOf="@+id/account_pass_icon"
+            android:visibility="gone"/>
         <Button
             android:text="登录"
             android:id="@+id/bt_account_login"
-            android:layout_below="@+id/et_account_pass"
+            android:layout_below="@+id/et_account_email"
             android:layout_marginTop="10dp"
             android:layout_width="220dp"
             android:layout_height="35dp"
@@ -66,6 +90,7 @@
             android:textStyle="bold"/>
         <TextView
             android:text="用户注册"
+            android:id="@+id/tv_account_register"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/bt_account_login"
             android:textColor="@color/colorWhite"

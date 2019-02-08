@@ -9,6 +9,7 @@ import com.rabbit.kaiyan.model.beans.FollowBean;
 import com.rabbit.kaiyan.model.beans.RankListBean;
 import com.rabbit.kaiyan.model.beans.RelateBean;
 import com.rabbit.kaiyan.model.beans.ReplyBean;
+import com.rabbit.kaiyan.model.beans.SearchResultBean;
 import com.rabbit.kaiyan.model.beans.UserInfoBean;
 import com.rabbit.kaiyan.model.beans.VideoFlowBean;
 
@@ -115,11 +116,21 @@ public class RetrofitHelper implements ApiHelper {
 
     @Override
     public Flowable<List<String>> getHotSearch() {
-        return null;
+        return api.getHotSearch();
     }
 
     @Override
     public Flowable<VideoFlowBean> getVideoFlowBean() {
         return api.getVideoFlow();
+    }
+
+    @Override
+    public Flowable<SearchResultBean> getSearchResultBean(int start, int num, String query) {
+        return api.getSearchResultBean(start, num, query);
+    }
+
+    @Override
+    public Flowable<UserInfoBean> register(String username, String password, String email) {
+        return api.register(username, password, email);
     }
 }

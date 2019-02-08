@@ -9,6 +9,7 @@ import com.rabbit.kaiyan.model.beans.FollowBean;
 import com.rabbit.kaiyan.model.beans.RankListBean;
 import com.rabbit.kaiyan.model.beans.RelateBean;
 import com.rabbit.kaiyan.model.beans.ReplyBean;
+import com.rabbit.kaiyan.model.beans.SearchResultBean;
 import com.rabbit.kaiyan.model.beans.UserInfoBean;
 import com.rabbit.kaiyan.model.beans.VideoFlowBean;
 
@@ -53,6 +54,17 @@ public interface Api {
      @GET("my/api/login?")
     Flowable<UserInfoBean> login(@Query("username") String username,@Query("password") String password);
 
+     /**
+     * @explain 用户注册
+     **/
+     @Headers({"URL:My"})
+     @GET("my/api/registered?")
+     Flowable<UserInfoBean> register(@Query("username") String username,@Query("password") String password, @Query("email") String email);
+
+
+     /**
+     * @explain 获取流视频
+     **/
      @Headers({"URL:My"})
      @GET("my/api/getFlow")
      Flowable<VideoFlowBean> getVideoFlow();
@@ -201,7 +213,7 @@ public interface Api {
      * @param start
      * @return
      */
-//    @GET("v1/search?")
-//    Flowable<SearchResultBean> getSearchResultBean(@Query("start") int start, @Query("num") int num, @Query("query") String query);
+    @GET("api/v1/search?")
+    Flowable<SearchResultBean> getSearchResultBean(@Query("start") int start, @Query("num") int num, @Query("query") String query);
 
 }

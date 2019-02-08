@@ -1,5 +1,6 @@
 package com.rabbit.kaiyan.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,9 +9,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.rabbit.kaiyan.R;
+import com.rabbit.kaiyan.ui.activity.SearchActivity;
 import com.rabbit.kaiyan.ui.adapter.FragmentAdapter;
 
 import java.util.ArrayList;
@@ -19,10 +22,9 @@ public class HomeFragment extends Fragment {
 
     private static final String TAG = "HomeFragment";
 
-//    @BindView(R.id.tl_home)
     SlidingTabLayout tabLayout;
-//    @BindView(R.id.vp_home)
     ViewPager viewPager;
+    ImageView searchIv;
 
     private FragmentAdapter mAdapter;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
@@ -50,14 +52,13 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home,null);
         tabLayout = v.findViewById(R.id.tl_home);
         viewPager = v.findViewById(R.id.vp_home);
+        searchIv = v.findViewById(R.id.iv_home_search);
 
         mFragments.add(new FollowFragment());
         mFragments.add(new DiscoveryFragment());
         mFragments.add(new RecommendFragment());
         mFragments.add(new DailyFragment());
 
-//        Log.d(TAG, "mTitle size"+mTitles.length);
-//        Log.d(TAG, "mCategory size"+mCategoryID.length);
         //各个分类的Fragment,ID区分
         for (int i = 4; i < mTitles.length; i++){
             mFragments.add(CategoryFragment.setCategoryID(mCategoryID[i]));
@@ -67,7 +68,15 @@ public class HomeFragment extends Fragment {
         viewPager.setAdapter(mAdapter);
         tabLayout.setViewPager(viewPager);
         viewPager.setCurrentItem(1);
-        return v;
 
+        searchIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), SearchActivity.class);
+                getContext().startActivity(intent);
+            }
+        });
+        return v;
     }
 }

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rabbit.kaiyan.R;
@@ -14,6 +15,7 @@ import com.rabbit.kaiyan.presenter.LoginPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
 
@@ -25,6 +27,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     EditText etAccountPass;
     @BindView(R.id.bt_account_login)
     Button btAccountLogin;
+    @BindView(R.id.et_account_email)
+    EditText etAccountEmail;
+    @BindView(R.id.tv_account_register)
+    TextView tvAccountRegister;
+    @BindView(R.id.account_email_icon)
+    ImageView accountEmailIcon;
+
+    private boolean isLoginAction = true;
 
     @Override
     protected void initInject() {
@@ -42,13 +52,36 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         btAccountLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(etAccountName.getText().equals("") || etAccountName.getText() == null || etAccountPass.getText().equals("") || etAccountPass.getText() == null){
-                    showToastMsg("用户名或密码不能为空");
-                }else{
-                    mPresenter.checkAccount(etAccountName.getText().toString(),etAccountPass.getText().toString());
-                }
+                    if (isLoginAction) {
+                        //登录动作
+                        mPresenter.checkAccount(etAccountName.getText().toString().trim(), etAccountPass.getText().toString().trim());
+                    } else {
+                        //注册动作
+                        mPresenter.register(etAccountName.getText().toString().trim(), etAccountPass.getText().toString().trim(),etAccountEmail.getText().toString().trim());
+                    }
             }
         });
+    }
+
+    @OnClick(R.id.tv_account_register)
+    public void register() {
+        changeView();
+    }
+    @Override
+    public void changeView() {
+        if (isLoginAction) {
+            isLoginAction = false;
+            etAccountEmail.setVisibility(View.VISIBLE);
+            accountEmailIcon.setVisibility(View.VISIBLE);
+            btAccountLogin.setText("注册");
+            tvAccountRegister.setText("用户登录");
+        } else {
+            isLoginAction = true;
+            etAccountEmail.setVisibility(View.GONE);
+            accountEmailIcon.setVisibility(View.GONE);
+            btAccountLogin.setText("登录");
+            tvAccountRegister.setText("用户注册");
+        }
     }
 
     @Override
@@ -65,7 +98,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void showToastMsg(String msg) {
-         Toast.makeText(mContext,msg,Toast.LENGTH_LONG).show();
+        Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
     }
 
     @Override

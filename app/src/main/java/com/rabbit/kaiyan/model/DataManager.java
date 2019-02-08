@@ -18,6 +18,7 @@ import com.rabbit.kaiyan.model.beans.LikeBean;
 import com.rabbit.kaiyan.model.beans.RankListBean;
 import com.rabbit.kaiyan.model.beans.RelateBean;
 import com.rabbit.kaiyan.model.beans.ReplyBean;
+import com.rabbit.kaiyan.model.beans.SearchResultBean;
 import com.rabbit.kaiyan.model.beans.UserInfoBean;
 import com.rabbit.kaiyan.model.beans.VideoFlowBean;
 import com.rabbit.kaiyan.model.http.ApiHelper;
@@ -229,6 +230,16 @@ public class DataManager implements ApiHelper,DBHelper,PreferenceHelper{
     @Override
     public Flowable<VideoFlowBean> getVideoFlowBean() {
         return mApiHelper.getVideoFlowBean();
+    }
+
+    @Override
+    public Flowable<SearchResultBean> getSearchResultBean(int start, int num, String query) {
+        return mApiHelper.getSearchResultBean(start, num, query);
+    }
+
+    @Override
+    public Flowable<UserInfoBean> register(String username, String password, String email) {
+        return mApiHelper.register(username, password, email);
     }
 
     /**

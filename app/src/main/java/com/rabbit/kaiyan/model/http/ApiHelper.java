@@ -9,6 +9,7 @@ import com.rabbit.kaiyan.model.beans.FollowBean;
 import com.rabbit.kaiyan.model.beans.RankListBean;
 import com.rabbit.kaiyan.model.beans.RelateBean;
 import com.rabbit.kaiyan.model.beans.ReplyBean;
+import com.rabbit.kaiyan.model.beans.SearchResultBean;
 import com.rabbit.kaiyan.model.beans.UserInfoBean;
 import com.rabbit.kaiyan.model.beans.VideoFlowBean;
 
@@ -66,5 +67,7 @@ public interface ApiHelper {
 
     Flowable<VideoFlowBean> getVideoFlowBean();
 
-//    Flowable<SearchResultBean> getSearchResultBean(int start, int num, String query);
+    Flowable<SearchResultBean> getSearchResultBean(int start, int num, String query);
+
+    Flowable<UserInfoBean> register(String username,String password, String email);
 }

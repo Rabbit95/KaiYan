@@ -2,22 +2,22 @@ package com.rabbit.kaiyan.model.beans;
 
 public class UserInfoBean {
     private String username;
-    private Integer loginstatus;
+    private Integer msgCode;
 
     public String getUsername() {
         return username;
-    }
-
-    public Integer getLoginstatus() {
-        return loginstatus;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setLoginstatus(Integer loginstatus) {
-        this.loginstatus = loginstatus;
+    public Integer getMsgCode() {
+        return msgCode;
+    }
+
+    public void setMsgCode(Integer msgCode) {
+        this.msgCode = msgCode;
     }
 
     @Override

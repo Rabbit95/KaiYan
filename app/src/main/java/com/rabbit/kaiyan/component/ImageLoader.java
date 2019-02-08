@@ -35,12 +35,11 @@ public class ImageLoader {
     }
 
     public static void loadRound(Context context,String url,final ImageView imageView){
-        Glide.with(context).load(url).bitmapTransform(new CenterCrop(context), new RoundedCornersTransformation(context, 30, 0)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
+        Glide.with(context).load(url).bitmapTransform(
+            new CenterCrop(context), new RoundedCornersTransformation(context, 30, 0)
+        ).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
     }
 
-    public static void loadViderThumb(Context context,String url,final ImageView imageView){
-
-    }
 
     private static int dip2px(Context context, float dpValue) {
         float scale = context.getResources().getDisplayMetrics().density;
